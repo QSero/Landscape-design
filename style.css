@@ -1,0 +1,451 @@
+/* ===== Mobile-first. Относительные единицы вместо фиксированных. ===== */
+
+:root {
+  --bg: #f4f8f2;
+  --surface: #ffffff;
+  --text: #1c2a1f;
+  --muted: #4b5d4f;
+  --accent: #2e7d32;
+  --accent-text: #ffffff;
+  --border: #c5d6c4;
+  --ok: #2e7d32;
+  --bad: #c62828;
+  --gap: 1rem;
+}
+
+/* Тёмная тема по системным настройкам */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101a12;
+    --surface: #18271b;
+    --text: #e8f3e6;
+    --muted: #b6c9b4;
+    --accent: #66bb6a;
+    --accent-text: #0b140c;
+    --border: #2f4a33;
+    --ok: #81c784;
+    --bad: #ef9a9a;
+  }
+}
+
+/* Ручная инверсия темы (чекбокс в футере, чистый CSS) */
+body:has(#theme-toggle:checked) {
+  --bg: #101a12;
+  --surface: #18271b;
+  --text: #e8f3e6;
+  --muted: #b6c9b4;
+  --accent: #66bb6a;
+  --accent-text: #0b140c;
+  --border: #2f4a33;
+  --ok: #81c784;
+  --bad: #ef9a9a;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(#theme-toggle:checked) {
+    --bg: #f4f8f2;
+    --surface: #ffffff;
+    --text: #1c2a1f;
+    --muted: #4b5d4f;
+    --accent: #2e7d32;
+    --accent-text: #ffffff;
+    --border: #c5d6c4;
+    --ok: #2e7d32;
+    --bad: #c62828;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ===== 1. Header / Nav ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-bottom: thin solid var(--border);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo span {
+  color: var(--accent);
+  margin-left: 0.25rem;
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  width: 1.6rem;
+  height: 0.2rem;
+  background: var(--text);
+  border-radius: 0.1rem;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+#menu-toggle:checked ~ .burger span:nth-child(1) {
+  transform: translateY(0.5rem) rotate(45deg);
+}
+#menu-toggle:checked ~ .burger span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked ~ .burger span:nth-child(3) {
+  transform: translateY(-0.5rem) rotate(-45deg);
+}
+
+#menu-toggle:focus-visible ~ .burger {
+  outline: 0.15rem solid var(--accent);
+}
+
+.main-nav {
+  display: none;
+  width: 100%;
+  padding-top: 0.75rem;
+}
+
+#menu-toggle:checked ~ .main-nav {
+  display: block;
+}
+
+.main-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.main-nav a:hover {
+  color: var(--accent);
+}
+
+.phone {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--accent-text) !important;
+}
+
+/* ===== 2. Hero ===== */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem 1rem;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)),
+    url("assets/hero.svg") center / cover no-repeat;
+  color: #ffffff;
+}
+
+.hero-content {
+  max-width: 40rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 7vw, 3.2rem);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin: 0 0 1.5rem;
+}
+
+.cta {
+  display: inline-block;
+  padding: 1rem 1.6rem;
+  border-radius: 3rem;
+  background: #ffd23f;
+  color: #1b1b1b;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-0.2rem);
+}
+
+/* ===== Общие секции ===== */
+.cases,
+.info,
+.feedback {
+  padding: 2.5rem 1rem;
+}
+
+.info {
+  background: var(--surface);
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+/* ===== 3. Grid ===== */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+.card {
+  padding: 1rem;
+  background: var(--surface);
+  border: thin solid var(--border);
+  border-radius: 0.75rem;
+}
+
+.ba {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ba figure {
+  position: relative;
+  margin: 0;
+}
+
+.ba img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.ba figcaption {
+  position: absolute;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.4rem;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.meta,
+.tag {
+  margin: 0.15rem 0;
+  color: var(--muted);
+}
+
+.tag {
+  font-style: italic;
+}
+
+/* ===== 4. Feedback form (валидация чистым CSS) ===== */
+.feedback form {
+  display: grid;
+  gap: var(--gap);
+  max-width: 36rem;
+}
+
+.feedback label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.feedback input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 0.15rem solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.feedback input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.feedback input:required:invalid:not(:placeholder-shown),
+.feedback input[type="date"]:required:invalid:not(:focus) {
+  border-color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 10%, var(--surface));
+}
+
+.feedback input:required:valid {
+  border-color: var(--ok);
+}
+
+.feedback button {
+  padding: 0.9rem 1.2rem;
+  font: inherit;
+  font-weight: 800;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--accent-text);
+  cursor: pointer;
+}
+
+.feedback button:hover {
+  filter: brightness(1.1);
+}
+
+.feedback form:invalid button {
+  opacity: 0.6;
+}
+
+/* ===== 5. Footer ===== */
+.site-footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  background: var(--surface);
+  border-top: thin solid var(--border);
+  color: var(--muted);
+}
+
+.site-footer h2 {
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.site-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer li {
+  margin-bottom: 0.35rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  border: thin solid var(--accent);
+  border-radius: 0.5rem;
+  color: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#theme-toggle:focus-visible ~ .site-footer .theme-switch {
+  outline: 0.15rem solid var(--accent);
+}
+
+/* ===== Планшет/десктоп ===== */
+@media (min-width: 1024px) {
+  .site-header {
+    flex-wrap: nowrap;
+    padding: 0.75rem 5%;
+  }
+
+  .burger {
+    display: none;
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: auto;
+    padding-top: 0;
+  }
+
+  .main-nav ul {
+    flex-direction: row;
+    gap: 1.5rem;
+    margin: 0;
+  }
+
+  .hero {
+    padding: 2rem 8%;
+  }
+
+  .cases,
+  .info,
+  .feedback {
+    padding: 4rem 8%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .site-footer {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2.5rem 8%;
+  }
+}
