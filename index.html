@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Ландшафтный дизайн — Гармония</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Переключатель темы (чистый CSS, без JS) -->
+  <input type="checkbox" id="theme-toggle" class="visually-hidden" aria-label="Инвертировать тему">
+
+  <header class="site-header">
+    <a class="logo" href="#top">Гармония<span>Ландшафт</span></a>
+
+    <input type="checkbox" id="menu-toggle" class="visually-hidden" aria-label="Открыть меню">
+    <label for="menu-toggle" class="burger" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="main-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="#gardens">Готовые сады</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#prices">Прайс-лист</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <a class="phone" href="tel:+77001234567">Диспетчер: +7 700 123 45 67</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <h1 id="hero-title">Мы создаём гармонию природы на вашем участке</h1>
+        <p>Проектируем, озеленяем и обслуживаем парки, сады и частные территории под ключ.</p>
+        <a class="cta" href="#contacts">Рассчитать стоимость проекта</a>
+      </div>
+    </section>
+
+    <section id="gardens" class="cases" aria-labelledby="gardens-title">
+      <h2 id="gardens-title">Готовые сады</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="ba">
+            <figure><img src="assets/before-1.svg" alt="Участок до работ"><figcaption>До</figcaption></figure>
+            <figure><img src="assets/after-1.svg" alt="Сад с прудом после работ"><figcaption>После</figcaption></figure>
+          </div>
+          <h3>Сад с прудом</h3>
+          <p class="meta">Площадь: <strong>0,8 акра</strong></p>
+          <p class="tag">Стиль: натуралистичный</p>
+        </article>
+
+        <article class="card">
+          <div class="ba">
+            <figure><img src="assets/before-2.svg" alt="Участок до работ"><figcaption>До</figcaption></figure>
+            <figure><img src="assets/after-2.svg" alt="Японский сад после работ"><figcaption>После</figcaption></figure>
+          </div>
+          <h3>Сад камней</h3>
+          <p class="meta">Площадь: <strong>0,3 акра</strong></p>
+          <p class="tag">Стиль: японский минимализм</p>
+        </article>
+
+        <article class="card">
+          <div class="ba">
+            <figure><img src="assets/before-3.svg" alt="Участок до работ"><figcaption>До</figcaption></figure>
+            <figure><img src="assets/after-3.svg" alt="Цветущий луг после работ"><figcaption>После</figcaption></figure>
+          </div>
+          <h3>Цветущий луг</h3>
+          <p class="meta">Площадь: <strong>1,5 акра</strong></p>
+          <p class="tag">Стиль: ландшафтный (английский)</p>
+        </article>
+
+        <article class="card">
+          <div class="ba">
+            <figure><img src="assets/before-4.svg" alt="Участок до работ"><figcaption>До</figcaption></figure>
+            <figure><img src="assets/after-4.svg" alt="Террасный сад после работ"><figcaption>После</figcaption></figure>
+          </div>
+          <h3>Террасный сад</h3>
+          <p class="meta">Площадь: <strong>0,6 акра</strong></p>
+          <p class="tag">Стиль: современный</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="services" class="info" aria-labelledby="services-title">
+      <h2 id="services-title">Услуги</h2>
+      <ul class="list">
+        <li>Проектирование и 3D-визуализация</li>
+        <li>Озеленение и посадка растений</li>
+        <li>Системы автополива и освещение</li>
+        <li>Дренаж, дорожки и малые формы</li>
+        <li>Сезонный уход за садом</li>
+      </ul>
+    </section>
+
+    <section id="prices" class="info" aria-labelledby="prices-title">
+      <h2 id="prices-title">Прайс-лист</h2>
+      <ul class="list">
+        <li>Проект участка — от 15 000 ₸ за 1 сотку</li>
+        <li>Озеленение под ключ — от 40 000 ₸ за 1 сотку</li>
+        <li>Автополив — от 12 000 ₸ за 1 сотку</li>
+        <li>Выезд замерщика — бесплатно</li>
+      </ul>
+    </section>
+
+    <section id="contacts" class="feedback" aria-labelledby="form-title">
+      <h2 id="form-title">Вызвать специалиста на замер</h2>
+      <form action="#" method="post">
+        <label for="name">Имя
+          <input type="text" id="name" name="name" placeholder="Ваше имя" required minlength="2">
+        </label>
+
+        <label for="phone">Контактный телефон
+          <input type="tel" id="phone" name="phone" placeholder="+7 700 000 00 00" pattern="[+0-9 ()\-]{10,}" required>
+        </label>
+
+        <label for="email">Эл. почта
+          <input type="email" id="email" name="email" placeholder="name@mail.com" required>
+        </label>
+
+        <label for="place">Географическое положение объекта
+          <input type="text" id="place" name="place" placeholder="Город, улица или координаты" required>
+        </label>
+
+        <label for="date">Календарная дата
+          <input type="date" id="date" name="date" required>
+        </label>
+
+        <button type="submit">Отправить заявку</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <section class="footer-col">
+      <h2>База знаний</h2>
+      <nav aria-label="База знаний по уходу за флорой">
+        <ul>
+          <li><a href="#">Как ухаживать за газоном</a></li>
+          <li><a href="#">Обрезка деревьев и кустарников</a></li>
+          <li><a href="#">Подкормка и полив</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <section class="footer-col">
+      <h2>Питомники-партнёры</h2>
+      <nav aria-label="Партнёрские питомники">
+        <ul>
+          <li><a href="#">Зелёный Мир</a></li>
+          <li><a href="#">Саженцы Алатау</a></li>
+          <li><a href="#">Флора Юг</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <section class="footer-col">
+      <h2>Правовая информация</h2>
+      <p>© 2026 «Гармония Ландшафт». Все права защищены. Использование материалов сайта без разрешения запрещено.</p>
+      <label for="theme-toggle" class="theme-switch">Сменить тему: светлая / тёмная</label>
+    </section>
+  </footer>
+</body>
+</html>
